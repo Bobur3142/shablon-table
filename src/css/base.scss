@@ -1,0 +1,61 @@
+// Table
+.q-table{
+  thead {
+    tr {
+      height: 40px;
+
+      th {
+        padding: 4px 12px;
+      }
+    }
+  }
+}
+
+.q-table thead, .q-table tr, .q-table th, .q-table td{
+  border-color: #bddaf8;
+}
+
+.my-sticky-header-table {
+  .q-table {
+    thead {
+      position: sticky;
+      top: 0;
+      //background: #ddd;
+      z-index: 10;
+    }
+  }
+}
+
+.my-sticky-last-column-table {
+  .q-table {
+    tbody {
+      tr {
+        td:last-child {
+          position: sticky;
+          right: 0;
+          z-index: 1;
+          background: #182335FF;
+          border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+}
+
+// Notification
+.Notivue__content-title {
+  margin: 0 0 !important;
+}
+
+.Notivue__content-message {
+  display: none !important;
+}
+
+// Select && Input
+.q-field{
+  .q-field__inner{
+    .q-field__control{
+      border-radius: 0.5rem;
+    }
+  }
+}
