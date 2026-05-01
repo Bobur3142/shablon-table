@@ -304,14 +304,12 @@
 import { ref, onMounted } from 'vue'
 import { useComp } from '../composables/useComp'
 import { $axios } from 'src/boot/axios'
-import {piniaActions} from "../stores/piniaActions";
+import {piniaActions} from "src/stores/piniaActions";
 import {useI18n} from "vue-i18n";
 import {useQuasar} from "quasar";
-// import { useQuasar } from 'quasar'    // раскомментируй для $q.dialog удаления
 // import { useRouter } from 'vue-router'
 
 const { t } = useI18n()
-// const $q = useQuasar()
 // const router = useRouter()
 const { tableFilterQuery, parsePaginationQuery, showError, formatDate, formatPrice, ask } = useComp()
 
@@ -321,8 +319,8 @@ const apiUrl = '/api/your-endpoint'
 
 // ════════════ TABLE STATE ════════════
 const tableRef = ref()
-const rows = ref<any[]>([])
-const selectedRows = ref<any[]>([])
+const rows = ref([])
+const selectedRows = ref([])
 const loading = ref(true)
 
 // ════════════ PAGINATION ════════════
@@ -333,6 +331,12 @@ const pagination = ref({
   rowsPerPage: 20,
   rowsNumber: 0,
 })
+// ════════════ ADD ROW ════════════
+const defaultFormBean = {
+  name: '',
+}
+const formBean = ref({...defaultFormBean})
+
 
 // ════════════ FILTER ════════════
 // [CURSOR] Добавь поля которые используешь в шаблоне фильтров выше
@@ -343,7 +347,7 @@ const defaultFilterData = {
   // date_from: null,
   // date_to: null,
 }
-const filter = ref<any>({ ...defaultFilterData })
+const filter = ref({ ...defaultFilterData })
 
 // ════════════ COLUMNS ════════════
 // [CURSOR] Замени на свои колонки
@@ -353,7 +357,7 @@ const filter = ref<any>({ ...defaultFilterData })
 // field    — поле из данных или fn: (row) => row.nested.value
 // sortable — разрешить сортировку
 // style    — ширина колонки
-const columns = ref<any[]>([
+const columns = ref([
   {
     name: 'id',
     label: '#',
@@ -391,7 +395,7 @@ const columns = ref<any[]>([
 //   { value: 'inactive', label: 'Неактивный' },
 //   { value: 'banned',   label: 'Заблокирован' },
 // ])
-// const categoryOptions = ref<any[]>([])
+// const categoryOptions = ref([])
 // async function fetchCategories() {
 //   const res = await $axios.get('/api/categories?perPage=999')
 //   categoryOptions.value = res.data.rows
@@ -399,8 +403,8 @@ const columns = ref<any[]>([
 
 // ════════════ BADGE HELPERS ════════════
 // [CURSOR] Настрой под свои статусы
-// function statusClass(status: string) {
-//   const map: Record<string, string> = {
+// function statusClass(status) {
+//   const map = {
 //     active:   'bg-emerald-100 text-emerald-700',
 //     inactive: 'bg-slate-100 text-slate-500',
 //     pending:  'bg-amber-100 text-amber-600',
@@ -408,8 +412,8 @@ const columns = ref<any[]>([
 //   }
 //   return map[status] ?? 'bg-slate-100 text-slate-500'
 // }
-// function statusLabel(status: string) {
-//   const map: Record<string, string> = {
+// function statusLabel(status) {
+//   const map = {
 //     active:   'Активный',
 //     inactive: 'Неактивный',
 //     pending:  'Ожидает',

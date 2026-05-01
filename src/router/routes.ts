@@ -24,6 +24,15 @@ const routes: RouteRecordRaw[] = [
           icon: 'mdi-test-tube',
         },
       },
+      {
+        path: 'user-roles',
+        name: 'PageUserRoles',
+        component: () => import('pages/UserRoles.vue'),
+        meta: {
+          icon: 'mdi-account-key',
+          title: 'modules.userRoles',
+        }
+      },
     ],
   },
 /*  {
