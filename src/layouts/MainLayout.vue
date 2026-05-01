@@ -14,7 +14,7 @@
           </q-btn>
 
           <span class="text-lg font-semibold text-gray-800">
-            {{ pageTitle }}
+            {{ t(pageTitle) }}
           </span>
         </div>
       </q-toolbar>
@@ -49,10 +49,10 @@
             <q-icon :name="link.meta.icon" size="22px" />
           </q-item-section>
           <q-item-section v-if="!miniDrawer">
-            <q-item-label class="text-sm font-medium">{{ link.meta.title }}</q-item-label>
+            <q-item-label class="text-sm font-medium">{{ t(link.meta.title) }}</q-item-label>
           </q-item-section>
           <q-tooltip v-if="miniDrawer" anchor="center right" self="center left" class="bg-gray-800">
-            {{ link.meta.title }}
+            {{ t(link.meta.title) }}
           </q-tooltip>
         </q-item>
       </q-list>
@@ -69,7 +69,9 @@
 import {computed, ref} from 'vue'
 import routes from "src/router/routes";
 import {useRoute} from "vue-router";
+import {useI18n} from "vue-i18n";
 
+const { t } = useI18n()
 const route = useRoute()
 
 const menus = routes.find(el => el.name === 'CabinetPage')

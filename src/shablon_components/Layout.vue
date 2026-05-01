@@ -26,7 +26,7 @@
           </div>
           <span class="text-[15px] font-semibold text-slate-800 tracking-tight">
             <!-- [CURSOR] Название приложения -->
-            {{ pageTitle }}
+            {{ t(pageTitle) }}
           </span>
         </div>
 
@@ -96,13 +96,13 @@
           </q-item-section>
 
           <q-item-section v-if="!miniDrawer" class="pl-2">
-            <q-item-label class="text-sm font-medium">{{ link.meta.title }}</q-item-label>
+            <q-item-label class="text-sm font-medium">{{ t(link.meta.title) }}</q-item-label>
           </q-item-section>
 
           <q-tooltip v-if="miniDrawer" anchor="center right" self="center left"
             class="bg-slate-800 text-white text-xs px-2.5 py-1.5 rounded-lg shadow-xl"
           >
-            {{ link.meta.title }}
+            {{ t(link.meta.title) }}
           </q-tooltip>
         </q-item>
       </q-list>
@@ -142,7 +142,9 @@
 import {computed, ref} from 'vue'
 import {useRoute} from "vue-router";
 import routes from "src/router/routes";
+import {useI18n} from "vue-i18n";
 
+const { t } = useI18n()
 const route = useRoute()
 
 const menus = routes.find(el => el.name === 'CabinetPage')
